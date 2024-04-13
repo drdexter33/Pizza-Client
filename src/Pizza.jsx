@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import PizzaList from './PizzaList';
 
 const term = "Pizza";
-const API_URL = '/pizzas';
-//const API_URL = 'https://pizzastore20240411114304.azurewebsites.net/pizzas';
+//const API_URL = '/pizzas';
+const API_URL = 'https://pizzastore20240411114304.azurewebsites.net/pizzas';
 const headers = {
   'Content-Type': 'application/json',
 };
