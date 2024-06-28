@@ -3,10 +3,10 @@ import PizzaList from './PizzaList';
 
 const term = "Pizza";
 //localhost mock endpoint - .Net Core app runs in Visual Studio (dotnet run ps terminal)
-const API_URL = '/pizzas';
+//const API_URL = '/pizzas';
 
 //endpoint in Azure Resource
-//const API_URL = 'https://pizzastore20240411114304.azurewebsites.net/pizzas';
+const API_URL = 'https://pizzastore20240411114304.azurewebsites.net/pizzas';
 const headers = {
   'Content-Type': 'application/json',
 };
