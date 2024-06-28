@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react';
 import PizzaList from './PizzaList';
 
 const term = "Pizza";
-//const API_URL = '/pizzas';
-const API_URL = 'https://pizzastore20240411114304.azurewebsites.net/pizzas';
+//localhost mock endpoint - .Net Core app runs in Visual Studio (dotnet run ps terminal)
+const API_URL = '/pizzas';
+
+//endpoint in Azure Resource
+//const API_URL = 'https://pizzastore20240411114304.azurewebsites.net/pizzas';
 const headers = {
   'Content-Type': 'application/json',
 };
@@ -14,6 +17,7 @@ function Pizza() {
   const [error, setError] = useState(null);
   //const [maxId, setMaxId] = useState(0);
 
+  //useEffect hook used to set data on initial page request via fetchPizzaData -> fetch API
   useEffect(() => {
     fetchPizzaData();
   }, []);
@@ -26,6 +30,7 @@ function Pizza() {
       .then(data => setData(data))
       .catch(error => setError(error));
   
+    //
     // Simulate fetching data from API
     // const pizzaData = [
     //   { id: 1, name: 'Margherita', description: 'Tomato sauce, mozzarella, and basil' },
@@ -36,7 +41,9 @@ function Pizza() {
     // setMaxId(Math.max(...pizzaData.map(pizza => pizza.id)));
   };
 
-  //Create
+  //--------------------------------------------------------
+  // handleCreate: Creates new pizza item
+  //--------------------------------------------------------
   const handleCreate = (item) => {
 
     console.log(`add item: ${JSON.stringify(item)}`)
@@ -58,10 +65,13 @@ function Pizza() {
     // setMaxId(maxId + 1);
   
 
-  //Update
+  
+  //--------------------------------------------------------
+  // handleUpdate: Updates pizza item
+  //--------------------------------------------------------
   const handleUpdate = (updatedItem) => {
     
-    console.log(`update item: ${JSON.stringify(updatedItem)}`)
+    console.log(`update item logged in debug console: ${JSON.stringify(updatedItem)}`)
 
     fetch(`${API_URL}/${updatedItem.id}`, {
       method: 'PUT',
@@ -77,7 +87,9 @@ function Pizza() {
   };
 
 
-  //Delete
+  //--------------------------------------------------------
+  // handleDelete: Updates pizza item
+  //--------------------------------------------------------
   const handleDelete = (id) => {
 
     fetch(`${API_URL}/${id}`, {
@@ -92,7 +104,7 @@ function Pizza() {
     // setData(updatedData);
   };
 
-
+//Return PizzaList component 
   return (
     <div>
       <PizzaList

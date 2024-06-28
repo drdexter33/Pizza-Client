@@ -2,6 +2,15 @@ import { useState, useEffect } from 'react';
 import { TextField, Button, Box, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 
+{/*
+  ---------------------------------------------------------------------------
+  Pizza List component renders a form to create and edit pizza items.
+  Here we receive props from the parent Pizza.jsx component.
+  ---------------------------------------------------------------------------
+  This component uses useState and useEffect hooks to manage form data
+  as well as editing state.
+*/}
+
 function PizzaList({ name, data, onCreate, onUpdate, onDelete, error }) {
 
   console.log(`PizzaList: ${JSON.stringify(data)}`);
@@ -9,6 +18,7 @@ function PizzaList({ name, data, onCreate, onUpdate, onDelete, error }) {
   const [formData, setFormData] = useState({ id: '', name: '', description: '' });
   const [editingId, setEditingId] = useState(null);
 
+  //useEffect - 
   useEffect(() => {
     if (editingId === null) {
       setFormData({ id: '', name: '', description: '' });
@@ -18,6 +28,7 @@ function PizzaList({ name, data, onCreate, onUpdate, onDelete, error }) {
     }
   }, [editingId, data]);
 
+  //
   const handleFormChange = (event) => {
 
     console.log(`handleFormChange: ${event.target.name} ${event.target.value}`)
@@ -29,6 +40,7 @@ function PizzaList({ name, data, onCreate, onUpdate, onDelete, error }) {
     }));
   };
 
+  //handleSubmit
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -58,6 +70,9 @@ function PizzaList({ name, data, onCreate, onUpdate, onDelete, error }) {
     onDelete(id);
   };
 
+  {/*
+    Returns form with two input fields for pizza name/description and two buttons to create/update pizza  
+  */}
   return (
     <Box className="Box" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <h2>{name}</h2>
